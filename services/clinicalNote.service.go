@@ -3,6 +3,7 @@ package services
 import (
 	"errors"
 
+	"github.com/ofojichigozie/hms-go-backend/constants"
 	"github.com/ofojichigozie/hms-go-backend/models"
 	"github.com/ofojichigozie/hms-go-backend/repositories"
 )
@@ -51,6 +52,9 @@ func (cns *clinicalNoteService) CreateNote(input models.CreateNoteInput, doctorI
 	if err := cns.clinicalNoteRepository.Create(clinicalNote); err != nil {
 		return nil, err
 	}
+
+	appointment.Status = constants.AppointmentStatus.COMPLETED
+	cns.appointmentRespository.Update(appointment)
 
 	return clinicalNote, nil
 }
