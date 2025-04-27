@@ -24,9 +24,9 @@ type CreateNoteInput struct {
 }
 
 type UpdateNoteInput struct {
-	PresentingComplaints *string `json:"presentingComplaints,omitempty" binding:"max=1000"`
-	PastMedicalHistory   *string `json:"pastMedicalHistory,omitempty" binding:"max=1000"`
-	ClinicalDiagnosis    *string `json:"clinicalDiagnosis,omitempty" binding:"max=1000"`
-	TreatmentPlan        *string `json:"treatmentPlan,omitempty" binding:"max=1000"`
-	Recommendation       *string `json:"recommendation,omitempty" binding:"max=1000"`
+	PresentingComplaints *string `json:"presentingComplaints,omitempty" binding:"omitempty,max=1000"`
+	PastMedicalHistory   *string `json:"pastMedicalHistory,omitempty" binding:"omitempty,max=1000"`
+	ClinicalDiagnosis    *string `json:"clinicalDiagnosis,omitempty" binding:"omitempty,max=1000"`
+	TreatmentPlan        *string `json:"treatmentPlan,omitempty" binding:"omitempty,max=1000"`
+	Recommendation       *string `json:"recommendation,omitempty" binding:"omitempty,max=1000"`
 }
