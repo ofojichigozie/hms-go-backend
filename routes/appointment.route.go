@@ -29,12 +29,6 @@ func AppointmentRoutes(r *gin.Engine, DB *gorm.DB) {
 			receptionistRoutes.DELETE("/:id", appointmentController.DeleteAppointment)
 		}
 
-		doctorRoutes := appointmentGroup.Group("")
-		doctorRoutes.Use(middleware.RoleMiddleware([]string{roles.DOCTOR}))
-		{
-			doctorRoutes.PATCH("/:id", appointmentController.UpdateAppointment)
-		}
-
 		staffRoutes := appointmentGroup.Group("")
 		staffRoutes.Use(middleware.RoleMiddleware([]string{roles.RECEPTIONIST, roles.DOCTOR}))
 		{
