@@ -67,6 +67,7 @@ func (cns *clinicalNoteService) GetNoteByID(id uint) (*models.ClinicalNote, erro
 }
 
 func (cns *clinicalNoteService) GetNoteByAppointmentID(appointmentID uint) (*models.ClinicalNote, error) {
+	// TODO: Fetch all related records (inner models)
 	return cns.clinicalNoteRepository.FindByAppointmentID(appointmentID)
 }
 
