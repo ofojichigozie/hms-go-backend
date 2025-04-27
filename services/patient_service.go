@@ -49,7 +49,6 @@ func (ps *patientService) CreatePatient(input models.CreatePatientInput, created
 		Email:              input.Email,
 		Address:            input.Address,
 		CreatedBy:          createdBy,
-		UpdatedBy:          createdBy,
 	}
 
 	if err := ps.patientRepository.Create(patient); err != nil {

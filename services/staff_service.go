@@ -69,7 +69,7 @@ func (ss *staffService) GetStaffByID(id uint) (*models.Staff, error) {
 }
 
 func (ss *staffService) GetStaffByEmail(email string) (*models.Staff, error) {
-	staff, err := ss.staffRepository.FindByEmail(email)
+	staff, err := ss.staffRepository.FindByEmail(strings.ToLower(email))
 	if err != nil {
 		return nil, err
 	}
