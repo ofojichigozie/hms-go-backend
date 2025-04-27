@@ -20,11 +20,10 @@ type Appointment struct {
 }
 
 type CreateAppointmentInput struct {
-	PatientID   uint      `json:"patientId" binding:"required"`
-	Department  string    `json:"department" binding:"required,oneof=general cardiology pediatrics"`
-	ScheduledAt time.Time `json:"scheduledAt" binding:"required"`
-	Duration    int       `json:"duration" binding:"omitempty,min=15,max=120"`
-	Reason      string    `json:"reason" binding:"omitempty,max=500"`
+	PatientID  uint   `json:"patientId" binding:"required"`
+	Department string `json:"department" binding:"required,oneof=general cardiology pediatrics"`
+	Duration   int    `json:"duration" binding:"omitempty,min=15,max=120"`
+	Reason     string `json:"reason" binding:"omitempty,max=500"`
 }
 
 type UpdateAppointmentInput struct {

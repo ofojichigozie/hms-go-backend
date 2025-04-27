@@ -19,29 +19,30 @@ type AppointmentService interface {
 
 type appointmentService struct {
 	appointmentRepository repositories.AppointmentRepository
-	staffRepository       repositories.StaffRepository
+	patientRepository     repositories.PatientRepository
 }
 
 func NewAppointmentService(
 	appointmentRepository repositories.AppointmentRepository,
-	staffRepository repositories.StaffRepository,
+	patientRepository repositories.PatientRepository,
 ) AppointmentService {
 	return &appointmentService{
 		appointmentRepository: appointmentRepository,
-		staffRepository:       staffRepository,
+		patientRepository:     patientRepository,
 	}
 }
 
 func (as *appointmentService) CreateAppointment(input models.CreateAppointmentInput, createdBy uint) (*models.Appointment, error) {
-	if input.ScheduledAt.Before(time.Now()) {
-		return nil, errors.New("scheduled time cannot be in the past")
+	patient, err := as.patientRepository.FindByID(input.PatientID)
+	if err != nil || patient == nil {
+		return nil, errors.New("associated patient record not found")
 	}
 
 	appointment := &models.Appointment{
 		PatientID:      input.PatientID,
 		ReceptionistID: createdBy,
 		Department:     input.Department,
-		ScheduledAt:    input.ScheduledAt,
+		ScheduledAt:    time.Now(),
 		Duration:       input.Duration,
 		Reason:         input.Reason,
 		Status:         constants.AppointmentStatus.SCHEDULED,

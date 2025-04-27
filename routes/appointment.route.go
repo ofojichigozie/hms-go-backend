@@ -11,9 +11,9 @@ import (
 )
 
 func AppointmentRoutes(r *gin.Engine, DB *gorm.DB) {
-	staffRepository := repositories.NewStaffRepository(DB)
+	patientRepository := repositories.NewPatientRepository(DB)
 	appointmentRepository := repositories.NewAppointmentRepository(DB)
-	appointmentService := services.NewAppointmentService(appointmentRepository, staffRepository)
+	appointmentService := services.NewAppointmentService(appointmentRepository, patientRepository)
 	appointmentController := controllers.NewAppointmentController(appointmentService)
 
 	roles := constants.Roles

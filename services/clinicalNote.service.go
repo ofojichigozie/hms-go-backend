@@ -34,7 +34,7 @@ func NewClinicalNoteService(
 func (cns *clinicalNoteService) CreateNote(input models.CreateNoteInput, doctorID uint) (*models.ClinicalNote, error) {
 	appointment, err := cns.appointmentRespository.FindByID(input.AppointmentID)
 	if err != nil {
-		return nil, errors.New("associated appointment not found")
+		return nil, errors.New("associated appointment record not found")
 	}
 
 	clinicalNote := &models.ClinicalNote{
