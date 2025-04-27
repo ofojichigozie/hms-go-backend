@@ -117,7 +117,7 @@ func (cns *clinicalNoteService) DeleteNote(id uint, staffId uint) error {
 		return errors.New("clinical note not found")
 	}
 	if clinicalNote.DoctorID != staffId {
-		return errors.New("only the doctor who created the clinical note can dlete it")
+		return errors.New("only the doctor who created the clinical note can delete it")
 	}
 
 	return cns.clinicalNoteRepository.Delete(id)

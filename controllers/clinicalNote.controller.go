@@ -119,7 +119,7 @@ func (c *ClinicalNoteController) DeleteNote(ctx *gin.Context) {
 
 	err = c.clinicalNoteService.DeleteNote(uint(clinicalNoteId), currentStaff.ID)
 	if err != nil {
-		responses.Error(ctx, http.StatusNotFound, "Clinical note not found", nil)
+		responses.Error(ctx, http.StatusBadRequest, "Failed to delete clinical note", err.Error())
 		return
 	}
 
