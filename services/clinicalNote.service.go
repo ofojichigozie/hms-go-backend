@@ -20,15 +20,18 @@ type ClinicalNoteService interface {
 type clinicalNoteService struct {
 	clinicalNoteRepository repositories.ClinicalNoteRepository
 	appointmentRespository repositories.AppointmentRepository
+	patientRespository     repositories.PatientRepository
 }
 
 func NewClinicalNoteService(
 	clinicalNoteRepository repositories.ClinicalNoteRepository,
 	appointmentRespository repositories.AppointmentRepository,
+	patientRespository repositories.PatientRepository,
 ) ClinicalNoteService {
 	return &clinicalNoteService{
 		clinicalNoteRepository: clinicalNoteRepository,
 		appointmentRespository: appointmentRespository,
+		patientRespository:     patientRespository,
 	}
 }
 
@@ -68,6 +71,11 @@ func (cns *clinicalNoteService) GetNoteByAppointmentID(appointmentID uint) (*mod
 }
 
 func (cns *clinicalNoteService) GetNotesByPatientID(patientID uint) ([]models.ClinicalNote, error) {
+	patient, err := cns.patientRespository.FindByID(patientID)
+	if err != nil || patient == nil {
+		return nil, errors.New("patient record not found")
+	}
+
 	return cns.clinicalNoteRepository.FindByPatientID(patientID)
 }
 

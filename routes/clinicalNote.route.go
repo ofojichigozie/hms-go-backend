@@ -13,7 +13,9 @@ import (
 func ClinicalNoteRoutes(r *gin.Engine, DB *gorm.DB) {
 	clinicalNoteRepository := repositories.NewClinicalNoteRepository(DB)
 	appointmentRepository := repositories.NewAppointmentRepository(DB)
-	noteService := services.NewClinicalNoteService(clinicalNoteRepository, appointmentRepository)
+	patientRepository := repositories.NewPatientRepository(DB)
+	noteService := services.NewClinicalNoteService(clinicalNoteRepository,
+		appointmentRepository, patientRepository)
 	noteController := controllers.NewClinicalNoteController(noteService)
 
 	roles := constants.Roles
