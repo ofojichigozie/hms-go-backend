@@ -1,0 +1,30 @@
+# Ignore binaries
+/bin/
+/obj/
+
+# Ignore the Go vendor folder
+/vendor/
+
+# Ignore Go module files, but keep go.mod and go.sum
+!go.mod
+!go.sum
+
+# Ignore log files
+*.log
+
+# Ignore coverage reports
+coverage.out
+
+# Ignore environment config files
+.env
+
+# IDE/editor folders
+.idea/
+.vscode/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Ignore air tmp directory
+tmp/
