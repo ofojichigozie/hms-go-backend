@@ -99,5 +99,9 @@ func (as *appointmentService) DeleteAppointment(id uint) error {
 	if appointment == nil {
 		return errors.New("appointment not found")
 	}
+	if appointment.Status == constants.AppointmentStatus.COMPLETED {
+		return errors.New("can't delete a completed appointment having clinical note(s)")
+	}
+
 	return as.appointmentRepository.Delete(id)
 }

@@ -39,7 +39,7 @@ func (ar *appointmentRepository) FindAll(filters map[string]interface{}) ([]mode
 
 func (ar *appointmentRepository) FindByID(id uint) (*models.Appointment, error) {
 	var appointment models.Appointment
-	err := ar.db.Preload("Patient").Preload("Doctor").First(&appointment, id).Error
+	err := ar.db.First(&appointment, id).Error
 	return &appointment, err
 }
 
