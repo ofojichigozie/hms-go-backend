@@ -78,6 +78,9 @@ The server will start on `http://localhost:5000`.
 
 ## API Endpoints
 
+Complete API documentation is available on Postman:
+[HMS API Documentation](https://documenter.getpostman.com/view/29776182/2sB2j1hCkm)
+
 ### Authentication
 - `POST /auth/login` - User login
 - `POST /auth/refresh` - Refresh authentication token (requires authentication)
