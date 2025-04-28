@@ -154,4 +154,4 @@ On first run, the system automatically creates an initial admin user. You can us
 
 ## Author
 
-Ofojichigozie
+Chigozie Ofoji
